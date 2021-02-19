@@ -1,7 +1,8 @@
-<h6>Dashboard</h6>
 <h3>Welcome {{ name }}</h3>
-<p>Here are your stories</p>
-{{#if stories}}
+<h5>Any new recipes to add today, or are you using an old one?</h5>
+<br>
+{{#if recipes}}
+<p>Here are your recipes</p>
     <table class="striped">
         <thead>
             <tr>
@@ -12,9 +13,9 @@
             </tr>
         </thead>
         <tbody>
-            {{#each stories}}
+            {{#each recipes}}
                 <tr>
-                    <td><a href="/stories/{{_id}}"></a>{{title}}</td>
+                    <td><a href="/recipes/{{_id}}"></a>{{title}}</td>
                     <td>{{createdAt}}</td>
                     <td><span class="dash-status">{{status}}</span></td>
                     <td></td>
@@ -23,5 +24,5 @@
         </tbody>
     </table>
 {{else}}
-    <p>You have not created any stories</p>
+    <h6>You have not created any recipes yet, click here to create one!</h6>
 {{/if}}

@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 // logging
-if (process.env.NODE_ENV === 'devlopment') {
+if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-app.use('/stories', require('./routes/stories'))
+app.use('/recipes', require('./routes/recipes'))
 
 const PORT = process.env.PORT || 3000
 

@@ -2,17 +2,17 @@ const express = require('express')
 const router = express.Router()
 const { ensureAuth } = require('../middleware/auth')
 
-const Story = require('../models/Story')
+const Recipe = require('../models/Recipe')
 
 // show add page
-// GET /stories/add
+// GET /recipes/add
 
 router.get('/add', ensureAuth, (req, res) => {
-    res.render('stories/add')
+    res.render('recipes/add')
 })
 
 // process add form
-// POST /stories
+// POST /recipes
 
 router.post('/', ensureAuth, (req, res) => {
     try {
