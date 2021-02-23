@@ -48,20 +48,25 @@ router.get('/', ensureAuth, async (req, res) => {
 // GET /recipes/edit/:id
 
 router.get('/edit/:id', ensureAuth, async (req, res) => {
-    const recipe = await Recipe.findOne({
-        _id: req.params.id,
-    }).lean()
+    try {
+        const recipe = await Recipe.findOne({
+            _id: req.params.id,
+        }).lean()
 
-    if (!recipe) {
-        return res.render('error/404')
-    }
+        if (!recipe) {
+            return res.render('error/404')
+        }
 
-    if (recipe.user != req.user.id) {
-        res.redirect('/recipes')
-    } else {
-        res.render('recipes/edit', {
-            recipe,
-        })
+        if (recipe.user != req.user.id) {
+            res.redirect('/recipes')
+        } else {
+            res.render('recipes/edit', {
+                recipe,
+            })
+        }
+    }catch(err) {
+        console.error(err)
+        return res.render('error/500')
     }
 })
 
