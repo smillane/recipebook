@@ -1,9 +1,10 @@
 <h3>Edit Your Recipe</h3>
 <div class="row">
-    <form action="/recipes" method="POST" class="col s12">
+    <form action="/recipes/{{recipe._id}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="title" name="title">
+                <input type="text" id="title" name="title" value="{{recipe.title}}">
                 <label for="title">Title</label>
             </div>
         </div>
