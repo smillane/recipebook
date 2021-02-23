@@ -2,7 +2,6 @@
 <h5>Any new recipes to add today, or are you using an old one?</h5>
 <br>
 {{#if recipes}}
-<p>Here are your recipes</p>
     <table class="striped">
         <thead>
             <tr>
@@ -19,7 +18,7 @@
                     <td>{{formatDate createdAt 'MMM Do YYYY, h:mm:ss a'}}</td>
                     <td><span class="dash-status">{{status}}</span></td>
                     <td>
-                        <a href="/recipes/edit/{{_id}}" class="btn btn-float">
+                        <a href="/recipes/edit/{{_id}}" class="btn blue btn-float">
                             <i class="fas fa-edit"></i>
                         </a>
                         <form action="/recipes/{{_id}}" method="POST" id="delete-form">

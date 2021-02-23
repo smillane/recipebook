@@ -44,6 +44,29 @@ router.get('/', ensureAuth, async (req, res) => {
     }
 })
 
+// show individual recipe
+// GET /recipe/:id
+
+router.get('/:id', ensureAuth, async (req, res) => {
+    try {
+        let recipe = await Recipe.findById(req.params.id)
+            .populate('user')
+            .lean()
+
+        if (!recipe) {
+            return res.render('error/404')
+        }
+
+        res.render('recipes/show', {
+            recipe
+        })
+
+    } catch (err) {
+        console.error(err)
+        res.render('error/404')
+    }
+})
+
 // show edit page
 // GET /recipes/edit/:id
 
@@ -105,7 +128,26 @@ router.delete('/:id', ensureAuth, async (req, res) => {
     }
 })
 
+// show user recipes
+// GET /recipes/user/:userId
 
+router.get('/user/:userId', ensureAuth, async (req, res) => {
+    try {
+        const recipes = await Recipe.find({
+            user: req.params.userId,
+            status: 'public',
+        })
+        .populate('user')
+        .lean()
+
+        res.render('recipes/index', {
+            recipes
+        })
+    }catch(err) {
+        console.error(err)
+        res.render('error/500')
+    }
+})
 
 
 module.exports = router
